@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "517762461991",
+    "project_id": "infinitysolstice-d250a",
+    "storage_bucket": "infinitysolstice-d250a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517762461991:android:8bc25882d143a91800f902",
+        "android_client_info": {
+          "package_name": "com.example.inifinity_solstice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517762461991-l7kvr6qdha5aoi5dpmndbtt8j9up7tgl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbnKAkqXtvrYe-PE2A2SxqGuPNo4MDYi0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517762461991-l7kvr6qdha5aoi5dpmndbtt8j9up7tgl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
