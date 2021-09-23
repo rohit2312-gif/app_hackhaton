@@ -98,8 +98,21 @@ PageController _pageController=PageController();
   int _currentindex=0;
   TextEditingController password=TextEditingController();
   @override
-  Future login()async{
-    UserCredential credential=await FirebaseAuth.instance.signInWithEmailAndPassword(email: email.text, password: password.text);
+  Future login()async {
+    try {
+      UserCredential credential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+          email: email.text, password: password.text);
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context){
+                  return HomeScreen();
+                }));
+    }
+    catch(e){
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: Colors.redAccent,
+        content: Text(e.toString()), duration: Duration(seconds: 1),),);
+
+    }
   }
   Future signin()async{
     try {
@@ -192,7 +205,8 @@ PageController _pageController=PageController();
                 ),
                 GestureDetector(
                   onTap: (){
-                    signin();
+                    login();
+                   // signin();
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -411,14 +425,24 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Cheatsheets'),
+              ],
+        ),
+      ),
       body: Container(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("welcome"),
+            Text("welcome page/home page"),
             GestureDetector(
               onTap: (){
                 FirebaseAuth auth=FirebaseAuth.instance;
                 auth.signOut();
+                Navigator.pushReplacement(context,MaterialPageRoute(builder: (BuildContext context)=>Login_Page(),));
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -431,6 +455,52 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: 100.0,
               ),
             ),
+            Container(
+              height: MediaQuery.of(context).size.height*0.3,
+              child: ListView(
+
+                // This next line does the trick.
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                          elevation: 10.0,
+
+                      child:Center(child: Text('Start your journey with frontend')),
+                    //  color: Colors.red,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                    elevation: 10.0,
+                      child: Center(child: Text('Uncover the mistery behind with learning backend')),
+                      //color: Colors.blue,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      elevation: 10.0,
+                     // width: 200.0,
+                      child: Center(child: Text('Start making full stack projects')),
+                      //color: Colors.green,
+                    ),
+                  ),
+
+                ],
+              ),
+            )
 
           ],
         ),
